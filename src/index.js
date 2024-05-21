@@ -41,5 +41,5 @@ function createNavBar() {
     app.appendChild(mainContent);
   }
   
-  // Initialize the app on page load
+  // page load
   document.addEventListener('DOMContentLoaded', init);
