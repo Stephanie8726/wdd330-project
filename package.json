@@ -1,0 +1,14 @@
+{
+  "name": "fitness-tracker",
+  "version": "1.0.0",
+  "description": "WDD330 final project",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Stephanie D. Selanoba <sel23003@byui.edu>",
+  "dependencies": {
+    "parcel": "^2.12.0"
+  }
+}
+
