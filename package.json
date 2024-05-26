@@ -1,15 +1,19 @@
+
+
+
 {
-  "name": "fitness-tracker",
+  "name": "html",
   "version": "1.0.0",
-  "description": "WDD330 final project",
+  "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
   },
   "author": "Stephanie D. Selanoba <sel23003@byui.edu>",
+  "license": "ISC",
+  "description": "WDD330 final project",
   "dependencies": {
     "parcel": "^2.12.0"
   }
 }
-
 

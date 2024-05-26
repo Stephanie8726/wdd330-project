@@ -1,0 +1,90 @@
+body {
+  font-family: arial;
+}
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 32px;
+  max-width: 1000px;
+  min-height: 90vh;
+  box-shadow: 0 0 3px gray;
+}
+
+header {
+  min-height: 50px;
+  h1 {
+    margin: 0px;
+  }
+}
+main {
+  flex: 1;
+}
+footer {
+  min-height: 50px;
+  div {
+    text-align: center;
+  }
+}
+
+.landing {
+  padding: 32px 0;
+  text-align: center;
+  blockquote {
+    position: relative;
+    width: 300px;
+    /* background: #ddd; */
+    margin: auto;
+    padding: 50px 0;
+  }
+
+  blockquote:before {
+    position: absolute;
+    content: open-quote;
+    font-size: 4em;
+    margin-left: -0.6em;
+    margin-top: -0.4em;
+  }
+  blockquote:after {
+    position: absolute;
+    content: close-quote;
+    font-size: 4em;
+    bottom: 0;
+    right: 0;
+    margin-right: -0.6em;
+    margin-bottom: -0.8em;
+  }
+  blockquote p {
+    padding: 20px 0;
+    display: inline;
+  }
+}
+
+.loginLinks {
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loginDiv {
+  width: 400px;
+  min-height: 250px;
+  border: 1px solid #ccc;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.loginError {
+  color: red;
+}
