@@ -26,7 +26,7 @@ function LandingPage() {
 
   const descriptionTwo = createElement("p", {
     textContent:
-      "Start by going into the login page and enter you credentials, the youll be redirected to our dashboard where you can set new goals, set and track the progres of them.",
+      "Start by going into the login page and enter your credentials, then you'll be redirected to our dashboard where you can set new goals, set and track the progress of them.",
   });
 
   const quoteDiv = createElement("blockquote", {}, [
