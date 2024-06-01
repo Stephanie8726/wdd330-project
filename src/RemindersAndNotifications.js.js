@@ -71,6 +71,8 @@ import { createElement } from './utils';
 function RemindersAndNotifications() {
   const title = createElement('h2', { textContent: 'Notifications & Reminders' });
 
+
+  //TODO not working
   const possibleNotifications = [
     'Take a rest day if you feel too sore!',
     'You burned 500 calories yesterday!',
