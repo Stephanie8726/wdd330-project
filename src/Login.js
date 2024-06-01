@@ -21,10 +21,10 @@ function Login() {
     password,
   ]);
 
-  const dashboardLink = createElement("a", {
-    href: "/#/dashboard",
-    textContent: "go to dashboard",
-  });
+  // const dashboardLink = createElement("a", {
+  //   href: "/#/dashboard",
+  //   textContent: "go to dashboard",
+  // });
 
   const loginButton = createElement("button", {
     id: "loginButton",
@@ -39,13 +39,8 @@ function Login() {
     id: "loginError",
   });
 
-  // this is user
-  // "Van15"
 
-  // password
-  // "fOMQgKBh2YCOczp"
-
-  const message = createElement("span", { className: 'demoMessage', textContent: "Demo User: Van15, Demo Password: fOMQgKBh2YCOczp" });
+  const message = createElement("span", { className: 'demoMessage', textContent: "Demo User: stephanie, Demo Password: 12345678" });
 
   loginButton.addEventListener("click", async () => {
     const userName = document.getElementById("userName").value;
@@ -53,16 +48,18 @@ function Login() {
     console.log(userName, password);
 
     const response = await fetch(
-      "https://665005a5ec9b4a4a60306b5e.mockapi.io/data-tracker/users"
+      "https://664d5b4fede9a2b556534a27.mockapi.io/api/fit/user"
     );
 
     const data = await response.json();
     const result = data.find(
-      (d) => d.username === userName && d.password === password
+      (d) => d.userName === userName && d.password === password
     );
     if (result) {
       //  verify user exist in mock data
-      window.location.hash = "#/dashboard";
+      window.location.hash = "#/dashboard?userId";
+      window.userIdSession = result.id;
+  
     } else {
       errorP.innerText = "Login unsuccessfully";
     }

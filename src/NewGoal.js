@@ -1,20 +1,3 @@
-// import { createElement } from './utils';
-
-// function NewGoal() {
-//   const title = createElement('h2', { textContent: 'create a new goal here' });
-
-//   const dashboardLink = createElement('a', {
-//     href: '/#/dashboard',
-//     textContent: 'go to dashboard',
-//   });
-
-//   return createElement('div', {}, [title, dashboardLink]);
-// }
-
-// export default NewGoal;
-
-
-
 import { createElement } from './utils';
 
 function NewGoal() {
@@ -25,22 +8,18 @@ function NewGoal() {
   const goalInput = createElement('input', { id: 'goalInput', type: 'text' });
   const goalWrapper = createElement('div', { className: 'inputWrapper' }, [goalLabel, goalInput]);
 
-  // Start Date
   const startDateLabel = createElement('label', { className: 'Label', textContent: 'Start Date:', for: 'startDateInput' });
   const startDateInput = createElement('input', { id: 'startDateInput', type: 'date' });
   const startDateWrapper = createElement('div', {className: 'inputWrapper'}, [startDateLabel, startDateInput])
 
-  // End Date
   const endDateLabel = createElement('label', { className: 'Label', textContent: 'End Date:', for: 'endDateInput' });
   const endDateInput = createElement('input', { id: 'endDateInput', type: 'date' });
   const endDateWrapper = createElement('div', { className: 'inputWrapper'}, [endDateLabel, endDateInput])
 
-  // Starting Weight
   const startingWeightLabel = createElement('label', { className: 'Label', textContent: 'Starting Weight (kg):', for: 'startingWeightInput'});
   const startingWeightInput = createElement('input', { id: 'startingWeightInput', type: 'number', step: '0.1' });
   const startingWeightWrapper = createElement('div', {className: 'inputWrapper'}, [startingWeightLabel, startingWeightInput])
 
-  // Goal Weight
   const goalWeightLabel = createElement('label', { className: 'Label', textContent: 'Goal Weight (kg):', for: 'goalWeightInput' });
   const goalWeightInput = createElement('input', { id: 'goalWeightInput', type: 'number', step: '0.1' });
   const goalWeightWrapper = createElement('div', {className: 'inputWrapper'}, [goalWeightLabel, goalWeightInput])
@@ -59,7 +38,7 @@ function NewGoal() {
       return;
     }
 
-    // handling goal creation
+    // handling goal
     let goals = JSON.parse(localStorage.getItem('goals')) || [];
     goals.push({ goal, startDate, endDate, startingWeight, goalWeight, progress: 0 });
     localStorage.setItem('goals', JSON.stringify(goals));
