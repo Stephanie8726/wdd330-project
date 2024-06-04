@@ -1,6 +1,7 @@
 body {
   font-family: arial;
 }
+
 .mainDiv {
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@ header {
   min-height: 50px;
   h1 {
     margin: 0px;
+    animation: myanima 3s infinite alternate;
   }
 
 .heading {
@@ -26,9 +28,11 @@ header {
   border-radius: 8px;
 }
 
+
 }
 main {
   flex: 1;
+  background-image: url('https://messybuntraveler.com/wp-content/uploads/2019/08/shutterstock_1120367756.png');
 }
 footer {
   min-height: 50px;
@@ -51,7 +55,7 @@ footer {
     position: absolute;
     content: open-quote;
     font-size: 4em;
-    margin-left: -0.6em;
+    margin-left: -0.5em;
     margin-top: -0.4em;
   }
   blockquote:after {
@@ -60,12 +64,13 @@ footer {
     font-size: 4em;
     bottom: 0;
     right: 0;
-    margin-right: -0.6em;
-    margin-bottom: -0.8em;
+    margin-right: -0.4em;
+    margin-bottom: -0.2em;
   }
   blockquote p {
     padding: 20px 0;
     display: inline;
+    font-style: italic;
   }
 }
 
@@ -73,7 +78,9 @@ footer {
   padding: 10px 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  font-size: 20px;
+  font-family: lora;
 }
 
 .loginDiv {
@@ -120,12 +127,6 @@ margin: auto;
   border-radius: 8px;
 }
 
-/* .remindersAndNotificationsDiv {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  padding: 50px;
-  border-radius: 8px;
-} */
-
 .addGoalButton{
   display: flex;
   justify-content: flex-end;
@@ -144,16 +145,8 @@ font-family: lora;
   margin-bottom: 10px;
 }
 
-/* .goalList {
-  text-align: center;
-  margin-top: 10px;
-  background-color: green;
-  color: white;
-  border-radius: 15px;
-} */
-
 /*----- dashboard -------*/
-.editButton {
+.editButton, .saveButton {
   font-family: lora;
   background-color: rgb(57, 57, 197);
   font-size: 14px;
@@ -165,12 +158,12 @@ font-family: lora;
   transition: background-color 0.3s, color 0.3s; 
 }
 
-.editButton:hover, .delete:hover {
+.editButton:hover, .delete:hover, .saveButton:hover, .cancelButton:hover {
   transform: scale(1.1);
   border-radius: 15px; 
 }
 
-.delete {
+.delete, .cancelButton {
   font-family: lora;
   background-color: red;
   font-size: 14px;
@@ -180,6 +173,14 @@ font-family: lora;
   border-radius: 5px; 
   cursor: pointer; 
   transition: background-color 0.3s, color 0.3s; 
+}
+
+.buttonWrapperDiv {
+  text-align: center; /* tracking */
+}
+
+.cancelButton {
+  margin-left: 20px; /* tracking */
 }
 
 .goalList {
@@ -202,7 +203,7 @@ font-family: lora;
 
 
 /* add goal */
-.inputWrapper, .submitButton, .dashboardLink, .notificationsLink {
+.inputWrapper, .dashboardLink, .notificationsLink {
   display: flex;
   justify-content: center;
   margin: auto;
@@ -252,4 +253,16 @@ font-family: lora;
 /* ------- tracking ---------- */
 .goalNameTracking {
   text-align: center;
+}
+
+@keyframes myanima {
+	0% {
+		transform: translateY(0);
+		background-color: lightgreen;
+	}
+
+	100% {
+		transform: translateX(0px) translateY(100px);
+		color: #fff;
+	}
 }

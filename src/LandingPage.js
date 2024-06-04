@@ -3,7 +3,7 @@ import { createElement } from "./utils";
 function LandingPage() {
   const heroImage = createElement("img", {
     src: "https://www.healthwellbeing.com/wp-content/uploads/2021/03/MAIN-IMAGE-RESIZED-shutterstock_499280881-1300x600.jpg",
-    width: "1000",
+    width: "300",
   });
 
   const loginLink = createElement("a", {

@@ -57,7 +57,7 @@ function Login() {
     );
     if (result) {
       //  verify user exist in mock data
-      window.location.hash = "#/dashboard?userId";
+      window.location.hash = "#/dashboard";
       window.userIdSession = result.id;
   
     } else {

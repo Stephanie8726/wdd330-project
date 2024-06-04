@@ -1,69 +1,125 @@
-import { createElement } from './utils';
+import { createElement } from "./utils";
 
 function NewGoal() {
-  const title = createElement('h2', { textContent: 'Create a new goal here' });
-  const titleWrapper = createElement("div", {className: 'inputWrapper'}, [title])
+  const title = createElement("h2", { textContent: "Add a new goal here" });
+  const titleWrapper = createElement("div", { className: "inputWrapper" }, [
+    title,
+  ]);
 
-  const goalLabel = createElement('label', { className: 'Label', textContent: 'Goal:', for: 'goalInput' });
-  const goalInput = createElement('input', { id: 'goalInput', type: 'text' });
-  const goalWrapper = createElement('div', { className: 'inputWrapper' }, [goalLabel, goalInput]);
+  const goalLabel = createElement("label", {
+    className: "Label",
+    textContent: "Goal Name:",
+    for: "goalInput",
+  });
+  const goalInput = createElement("input", {
+    id: "goalInput",
+    type: "text",
+    placeholder: "e.g. siwmming 5 km in 1 hour",
+  });
+  const goalWrapper = createElement("div", { className: "inputWrapper" }, [
+    goalLabel,
+    goalInput,
+  ]);
 
-  const startDateLabel = createElement('label', { className: 'Label', textContent: 'Start Date:', for: 'startDateInput' });
-  const startDateInput = createElement('input', { id: 'startDateInput', type: 'date' });
-  const startDateWrapper = createElement('div', {className: 'inputWrapper'}, [startDateLabel, startDateInput])
+  const descriptionLabel = createElement("label", {
+    className: "descriptionLabel",
+    textContent: "Goal Description: ",
+  });
+  const descriptionTextArea = createElement("textarea", {id: "goalDescription", placeholder: "In order to swim 5 km I will..."});
+  const descriptionWrapper = createElement(
+    "div",
+    { className: "inputWrapper" },
+    [descriptionLabel, descriptionTextArea]
+  );
 
-  const endDateLabel = createElement('label', { className: 'Label', textContent: 'End Date:', for: 'endDateInput' });
-  const endDateInput = createElement('input', { id: 'endDateInput', type: 'date' });
-  const endDateWrapper = createElement('div', { className: 'inputWrapper'}, [endDateLabel, endDateInput])
+  const startDateLabel = createElement("label", {
+    className: "Label",
+    textContent: "Start Date:",
+    for: "startDateInput",
+  });
+  const startDateInput = createElement("input", {
+    id: "startDateInput",
+    type: "date",
+  });
+  const startDateWrapper = createElement("div", { className: "inputWrapper" }, [
+    startDateLabel,
+    startDateInput,
+  ]);
 
-  const startingWeightLabel = createElement('label', { className: 'Label', textContent: 'Starting Weight (kg):', for: 'startingWeightInput'});
-  const startingWeightInput = createElement('input', { id: 'startingWeightInput', type: 'number', step: '0.1' });
-  const startingWeightWrapper = createElement('div', {className: 'inputWrapper'}, [startingWeightLabel, startingWeightInput])
+  const endDateLabel = createElement("label", {
+    className: "Label",
+    textContent: "End Date:",
+    for: "endDateInput",
+  });
+  const endDateInput = createElement("input", {
+    id: "endDateInput",
+    type: "date",
+  });
+  const endDateWrapper = createElement("div", { className: "inputWrapper" }, [
+    endDateLabel,
+    endDateInput,
+  ]);
 
-  const goalWeightLabel = createElement('label', { className: 'Label', textContent: 'Goal Weight (kg):', for: 'goalWeightInput' });
-  const goalWeightInput = createElement('input', { id: 'goalWeightInput', type: 'number', step: '0.1' });
-  const goalWeightWrapper = createElement('div', {className: 'inputWrapper'}, [goalWeightLabel, goalWeightInput])
+  const saveButton = createElement("button", {
+    id: "saveButton",
+    textContent: "Save",
+    className: "saveButton",
+  });
 
-  const submitButton = createElement('button', { className: 'submitButton', textContent: 'Add Goal' });
+  const cancelButton = createElement("button", {
+    id: "cancelButton",
+    textContent: "Cancel",
+    className: "cancelButton",
+  });
 
-  submitButton.addEventListener('click', () => {
+  const buttonWrapper = createElement("div", {className: "buttonWrapperDiv"}, [saveButton, cancelButton]);
+
+  saveButton.addEventListener("click", () => {
     const goal = goalInput.value.trim();
     const startDate = startDateInput.value;
     const endDate = endDateInput.value;
-    const startingWeight = parseFloat(startingWeightInput.value);
-    const goalWeight = parseFloat(goalWeightInput.value);
+    const description = descriptionTextArea.value.trim();
 
-    if (!goal || !startDate || !endDate || isNaN(startingWeight) || isNaN(goalWeight)) {
-      alert('Please fill in all fields correctly.');
+    if (
+      !goal ||
+      !startDate ||
+      !endDate ||
+      !description
+    ) {
+      alert("Please fill in all fields correctly.");
       return;
     }
 
-    // handling goal
-    let goals = JSON.parse(localStorage.getItem('goals')) || [];
-    goals.push({ goal, startDate, endDate, startingWeight, goalWeight, progress: 0 });
-    localStorage.setItem('goals', JSON.stringify(goals));
-    alert('Goal added successfully!');
-    goalInput.value = '';
-    startDateInput.value = '';
-    endDateInput.value = '';
-    startingWeightInput.value = '';
-    goalWeightInput.value = '';
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    goals.push({
+      goal,
+      startDate,
+      endDate,
+      description,
+      progress: 0,
+    });
+    localStorage.setItem("goals", JSON.stringify(goals));
+    alert("Goal added successfully!");
+    goalInput.value = "";
+    startDateInput.value = "";
+    endDateInput.value = "";
+    description.value = "";
+    window.location.hash = "#/dashboard";
   });
 
-  const dashboardLink = createElement('a', {
-    href: '/#/dashboard',
-    textContent: 'Go to dashboard',
-    className: 'dashboardLink'
+  const dashboardLink = createElement("a", {
+    href: "/#/dashboard",
+    textContent: "Go to dashboard",
+    className: "dashboardLink",
   });
 
-  return createElement('div', {className: 'newGoalsDiv'}, [
+  return createElement("div", { className: "newGoalsDiv" }, [
     titleWrapper,
     goalWrapper,
+    descriptionWrapper,
     startDateWrapper,
     endDateWrapper,
-    startingWeightWrapper,
-    goalWeightWrapper,
-    submitButton,
+    buttonWrapper,
     dashboardLink,
   ]);
 }
