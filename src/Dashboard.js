@@ -25,7 +25,7 @@ function createTable(data, refreshDashboard) {
             method: 'DELETE'
           });
           alert(`Successfully deleted the goal "${data[i].name}".`);
-          refreshDashboard(); // Refresh the dashboard to reflect the deletion
+          refreshDashboard(); // Refresh to reflect the deletion
         } catch (error) {
           console.error("Error deleting goal:", error);
         }
@@ -42,7 +42,7 @@ function Dashboard() {
 
   const title = createElement("h2", {
     className: "goalList",
-    textContent: "List of current goals",
+    textContent: "List of Current Goals",
   });
 
   const addButton = createElement("button", {

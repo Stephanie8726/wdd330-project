@@ -4,7 +4,6 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import NewGoal from "./NewGoal";
 import Tracking from "./Tracking";
-// import RemindersAndNotifications from "./remindersAndNotifications.js"; // Add .js extension
 
 export function initRouter(mainView) {
   function updateView(newView) {
@@ -29,9 +28,6 @@ export function initRouter(mainView) {
       case "#/tracking":
         updateView(Tracking());
         break;
-      // case "#/notifications":
-      //   updateView(RemindersAndNotifications());
-      //   break;
       default:
         updateView(createElement("h3", { textContent: "404 Page Not Found" }));
         break;

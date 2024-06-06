@@ -5,9 +5,7 @@ function NewGoal() {
   console.log(window.currentTrackingGoal);
 
   const title = createElement("h2", { textContent: "Tracking Goal Progress" });
-  const titleWrapper = createElement("div", { className: "inputWrapper" }, [
-    title,
-  ]);
+  const titleWrapper = createElement("div", { className: "inputWrapper" }, [title]);
 
   const goalLabel = createElement("label", {
     className: "Label",
@@ -22,10 +20,7 @@ function NewGoal() {
     readOnly: true,
   });
 
-  const goalWrapper = createElement("div", { className: "inputWrapper" }, [
-    goalLabel,
-    goalInput,
-  ]);
+  const goalWrapper = createElement("div", { className: "inputWrapper" }, [goalLabel, goalInput]);
 
   const descriptionLabel = createElement("label", {
     className: "descriptionLabel",
@@ -35,11 +30,7 @@ function NewGoal() {
     id: "goalDescription",
     placeholder: "I was able to perform the target goal which is...",
   });
-  const descriptionWrapper = createElement(
-    "div",
-    { className: "inputWrapper" },
-    [descriptionLabel, descriptionTextArea]
-  );
+  const descriptionWrapper = createElement("div", { className: "inputWrapper" }, [descriptionLabel, descriptionTextArea]);
 
   const startDateLabel = createElement("label", {
     className: "Label",
@@ -50,10 +41,7 @@ function NewGoal() {
     id: "startDateInput",
     type: "date",
   });
-  const startDateWrapper = createElement("div", { className: "inputWrapper" }, [
-    startDateLabel,
-    startDateInput,
-  ]);
+  const startDateWrapper = createElement("div", { className: "inputWrapper" }, [startDateLabel, startDateInput]);
 
   const endDateLabel = createElement("label", {
     className: "Label",
@@ -64,10 +52,9 @@ function NewGoal() {
     id: "endDateInput",
     type: "date",
   });
-  const endDateWrapper = createElement("div", { className: "inputWrapper" }, [
-    endDateLabel,
-    endDateInput,
-  ]);
+  const endDateWrapper = createElement("div", { className: "inputWrapper" }, [endDateLabel, endDateInput]);
+
+  const datesWrapper = createElement("div", { className: "datesWrapper" }, [startDateWrapper, endDateWrapper]);
 
   const timesCompletedLabel = createElement("label", {
     className: "Label",
@@ -78,13 +65,9 @@ function NewGoal() {
     id: "timesCompletedInput",
     type: "number",
     min: "0",
-    readOnly: true,
+    placeholder: "Enter the number of times you have completed this goal",
   });
-  const timesCompletedWrapper = createElement(
-    "div",
-    { className: "inputWrapper" },
-    [timesCompletedLabel, timesCompletedInput]
-  );
+  const timesCompletedWrapper = createElement("div", { className: "inputWrapper" }, [timesCompletedLabel, timesCompletedInput]);
 
   const saveButton = createElement("button", {
     id: "saveButton",
@@ -98,11 +81,7 @@ function NewGoal() {
     className: "cancelButton",
   });
 
-  const buttonWrapper = createElement(
-    "div",
-    { className: "buttonWrapperDiv" },
-    [saveButton, cancelButton]
-  );
+  const buttonWrapper = createElement("div", { className: "buttonWrapperDiv" }, [saveButton, cancelButton]);
 
   saveButton.addEventListener("click", () => {
     const goal = goalInput.value.trim();
@@ -111,24 +90,16 @@ function NewGoal() {
     const description = descriptionTextArea.value.trim();
     const timesCompleted = parseInt(timesCompletedInput.value);
 
-    if (!goal || !startDate || !endDate || !description) {
+    if (!goal || !startDate || !endDate || !description || isNaN(timesCompleted)) {
       alert("Please fill in all fields correctly.");
       return;
     }
-
-    // Increment the number of times completed for this goal
-    let timesCompletedCount = parseInt(localStorage.getItem(goal)) || 0;
-    timesCompletedCount++;
-    localStorage.setItem(goal, timesCompletedCount);
 
     // Calculate the progress percentage based on the number of times completed
     const totalDays = Math.ceil(
       (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)
     );
-    const progressPercentage = Math.min(
-      100,
-      (timesCompletedCount / totalDays) * 100
-    );
+    const progressPercentage = Math.min(100, (timesCompleted / totalDays) * 100);
 
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
     const existingGoalIndex = goals.findIndex((g) => g.goal === goal);
@@ -147,24 +118,25 @@ function NewGoal() {
     }
     localStorage.setItem("goals", JSON.stringify(goals));
 
-    let message = `${goal} \nProgress: ${progressPercentage.toFixed(1)}%\n`;
-    message += `Number of Times Completed: ${timesCompletedCount}\n`;
+    let message = `${goal} \nCompleted: ${timesCompleted}/${totalDays}\nProgress: ${progressPercentage.toFixed(2)}%`;
     alert(message);
 
     goalInput.value = "";
     startDateInput.value = "";
     endDateInput.value = "";
     descriptionTextArea.value = "";
-    timesCompletedInput.value = "0";
+    timesCompletedInput.value = "";
     window.location.hash = "#/dashboard";
   });
 
   cancelButton.addEventListener("click", () => {
     alert("Changes not saved");
     // Reset input fields
+    goalInput.value = "";
     startDateInput.value = "";
     endDateInput.value = "";
     descriptionTextArea.value = "";
+    timesCompletedInput.value = "";
   });
 
   const dashboardLink = createElement("a", {
@@ -177,8 +149,7 @@ function NewGoal() {
     titleWrapper,
     goalWrapper,
     descriptionWrapper,
-    startDateWrapper,
-    endDateWrapper,
+    datesWrapper,
     timesCompletedWrapper,
     buttonWrapper,
     dashboardLink,

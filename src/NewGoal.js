@@ -2,9 +2,7 @@ import { createElement } from "./utils";
 
 function NewGoal() {
   const title = createElement("h2", { textContent: "Add a new goal here" });
-  const titleWrapper = createElement("div", { className: "inputWrapper" }, [
-    title,
-  ]);
+  const titleWrapper = createElement("div", {}, [title]);
 
   const goalLabel = createElement("label", {
     className: "Label",
@@ -14,7 +12,7 @@ function NewGoal() {
   const goalInput = createElement("input", {
     id: "goalInput",
     type: "text",
-    placeholder: "e.g. siwmming 5 km in 1 hour",
+    placeholder: "e.g. swimming 5 km in 1 hour",
   });
   const goalWrapper = createElement("div", { className: "inputWrapper" }, [
     goalLabel,
@@ -25,7 +23,11 @@ function NewGoal() {
     className: "descriptionLabel",
     textContent: "Goal Description: ",
   });
-  const descriptionTextArea = createElement("textarea", {id: "goalDescription", placeholder: "In order to swim 5 km I will..."});
+  const descriptionTextArea = createElement("textarea", {
+    rows: "5",
+    id: "goalDescription",
+    placeholder: "In order to swim 5 km I will...",
+  });
   const descriptionWrapper = createElement(
     "div",
     { className: "inputWrapper" },
@@ -60,6 +62,8 @@ function NewGoal() {
     endDateInput,
   ]);
 
+  const datesWrapper = createElement("div", { className: "datesWrapper" }, [startDateWrapper, endDateWrapper]);
+
   const saveButton = createElement("button", {
     id: "saveButton",
     textContent: "Save",
@@ -72,7 +76,7 @@ function NewGoal() {
     className: "cancelButton",
   });
 
-  const buttonWrapper = createElement("div", {className: "buttonWrapperDiv"}, [saveButton, cancelButton]);
+  const buttonWrapper = createElement("div", { className: "buttonWrapperDiv" }, [saveButton, cancelButton]);
 
   saveButton.addEventListener("click", () => {
     const goal = goalInput.value.trim();
@@ -80,12 +84,7 @@ function NewGoal() {
     const endDate = endDateInput.value;
     const description = descriptionTextArea.value.trim();
 
-    if (
-      !goal ||
-      !startDate ||
-      !endDate ||
-      !description
-    ) {
+    if (!goal || !startDate || !endDate || !description) {
       alert("Please fill in all fields correctly.");
       return;
     }
@@ -103,8 +102,17 @@ function NewGoal() {
     goalInput.value = "";
     startDateInput.value = "";
     endDateInput.value = "";
-    description.value = "";
+    descriptionTextArea.value = "";
     window.location.hash = "#/dashboard";
+  });
+
+  cancelButton.addEventListener("click", () => {
+    alert("Changes not saved");
+    // Reset input fields
+    goalInput.value = "";
+    startDateInput.value = "";
+    endDateInput.value = "";
+    descriptionTextArea.value = "";
   });
 
   const dashboardLink = createElement("a", {
@@ -113,12 +121,12 @@ function NewGoal() {
     className: "dashboardLink",
   });
 
+
   return createElement("div", { className: "newGoalsDiv" }, [
     titleWrapper,
     goalWrapper,
     descriptionWrapper,
-    startDateWrapper,
-    endDateWrapper,
+    datesWrapper,
     buttonWrapper,
     dashboardLink,
   ]);

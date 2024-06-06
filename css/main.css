@@ -1,5 +1,39 @@
+:root {
+  --pastel-blue: #aec6cf;
+  --pastel-green: #b7e6a5;
+}
+
+
 body {
   font-family: arial;
+}
+
+input[type=text], input[type=password], textarea, input[type=date], input[type=number]{
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 0;
+  margin-bottom: 15px;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.site-background {
+  background-image: url("https://messybuntraveler.com/wp-content/uploads/2019/08/shutterstock_1120367756.png");
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.root {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .mainDiv {
@@ -7,38 +41,64 @@ body {
   flex-direction: column;
   margin: auto;
   padding: 32px;
-  max-width: 1000px;
+  width: 1000px;
   min-height: 90vh;
   box-shadow: 0 0 3px gray;
+  background: white;
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
   min-height: 50px;
-  h1 {
-    margin: 0px;
-    animation: myanima 3s infinite alternate;
-  }
-
-.heading {
-  text-align: center;
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-  font-family: Lora;
-  margin-bottom: 50px;
-  margin-top: 30px;
-  border-radius: 8px;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
 }
 
-
+header img {
+  width: 250px;
 }
+
+header .heading {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/*---- app.js ----*/
+.navLinks {
+  display: flex;
+  gap: 15px;
+}
+
+.navLinks a {
+  text-decoration: none;
+  padding: 5px 5px;
+  transition: background-color 0.3s;
+}
+
+.navLinks a:hover {
+  font-size: 18px;
+  color: tomato;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
 main {
   flex: 1;
-  background-image: url('https://messybuntraveler.com/wp-content/uploads/2019/08/shutterstock_1120367756.png');
+  background: white;
 }
+
 footer {
   min-height: 50px;
-  div {
-    text-align: center;
-  }
+  border-top: 1px solid lightgray;
+  padding-top: 16px;
+}
+
+footer div {
+  text-align: center;
 }
 
 .landing {
@@ -80,7 +140,6 @@ footer {
   display: flex;
   justify-content: center;
   font-size: 20px;
-  font-family: lora;
 }
 
 .loginDiv {
@@ -104,16 +163,16 @@ footer {
 }
 
 .demoMessage {
-font-size: 10px;
-color: gray;
-margin: auto;
+  font-size: 10px;
+  color: gray;
+  margin: auto;
 }
 
 .loginError {
   color: red;
 }
 
-.dashboardDiv{
+.dashboardDiv {
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -127,52 +186,53 @@ margin: auto;
   border-radius: 8px;
 }
 
-.addGoalButton{
+.addGoalButton {
   display: flex;
   justify-content: flex-end;
 }
 
 .goalsGrid {
-display: grid;
-grid-template-columns: 1fr 3fr 2fr 1fr 1fr;
-gap: 5px;
-font-family: lora;
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr 1fr 1fr;
+  gap: 10px;
 }
 
-.goalHeader{
+.goalHeader {
   font-weight: 600;
-  font-family: lora;
   margin-bottom: 10px;
 }
 
 /*----- dashboard -------*/
-.editButton, .saveButton {
-  font-family: lora;
+.editButton,
+.saveButton {
   background-color: rgb(57, 57, 197);
   font-size: 14px;
   border: none;
   color: white;
-  padding: 5px 10px; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s, color 0.3s; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.editButton:hover, .delete:hover, .saveButton:hover, .cancelButton:hover {
+.editButton:hover,
+.delete:hover,
+.saveButton:hover,
+.cancelButton:hover {
   transform: scale(1.1);
-  border-radius: 15px; 
+  border-radius: 15px;
 }
 
-.delete, .cancelButton {
-  font-family: lora;
+.delete,
+.cancelButton {
   background-color: red;
   font-size: 14px;
   border: none;
   color: white;
-  padding: 5px 10px; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s, color 0.3s; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .buttonWrapperDiv {
@@ -196,56 +256,81 @@ font-family: lora;
 }
 
 .newGoalsDiv {
+  display: flex;
+  flex-direction: column;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  padding: 40px;
+  padding: 150px;
+  max-width: 700px;
+  margin: auto;
+  gap: 10px;
 }
 
-
 /* add goal */
-.inputWrapper, .dashboardLink, .notificationsLink {
+.dashboardLink,
+.notificationsLink {
   display: flex;
   justify-content: center;
   margin: auto;
   margin-bottom: 10px;
   margin-top: 15px;
-  font-family: lora;
   font-size: 16px;
 }
 
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.datesWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.datesWrapper .inputWrapper {
+  min-width: 250px;
+}
 
 .label {
   margin-right: 5px;
 }
 
-.submitButton, .addButton, .loginButton, .progressButton {
-  font-family: lora;
+.submitButton,
+.addButton,
+.loginButton,
+.progressButton {
   background-color: green;
   font-size: 14px;
   border: none;
   color: white;
-  padding: 10px 20px; 
-  border-radius: 10px; 
-  cursor: pointer; 
-  transition: background-color 0.3s, color 0.3s; 
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.submitButton:hover, .addButton:hover, .loginButton:hover, .progressButton:hover {
+.submitButton:hover,
+.addButton:hover,
+.loginButton:hover,
+.progressButton:hover {
   transform: scale(1.1);
-  border-radius: 15px; 
+  border-radius: 15px;
 }
 
 .progressButton {
   margin-left: 20px;
 }
 
-.dashboardLink, .notificationsLink {
+.dashboardLink,
+.notificationsLink {
   text-decoration: none;
-  font-family: lora;
   margin-bottom: 20px;
 }
 
-.dashboardLink:hover, .notificationsLink:hover {
+.dashboardLink:hover,
+.notificationsLink:hover {
   transform: scale(1.1);
   color: tomato;
 }
@@ -255,14 +340,27 @@ font-family: lora;
   text-align: center;
 }
 
-@keyframes myanima {
-	0% {
-		transform: translateY(0);
-		background-color: lightgreen;
-	}
 
-	100% {
-		transform: translateX(0px) translateY(100px);
-		color: #fff;
-	}
+@media only screen and (max-width: 768px) {
+
+  header {
+    justify-content: center;
+  }
+
+  header .heading {
+    font-size: 22px;
+  }  
+
+  .heroImage {
+    width: 550px;
+  }
+
+  .mainDiv {
+    margin: auto;
+    padding: -10px;
+    width: 700px;
+    box-shadow: 0 0 3px gray;
+    background: white;
+    margin-right: 10px;
+  }
 }

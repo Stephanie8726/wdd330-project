@@ -5,7 +5,7 @@ function Login() {
 
   const labelOne = createElement("label", { textContent: "User Name" });
 
-  const userName = createElement("input", { id: "userName" });
+  const userName = createElement("input", { id: "userName", type: "text"});
 
   const inputOne = createElement("div", { className: "inputDiv" }, [
     labelOne,
@@ -20,11 +20,6 @@ function Login() {
     labelTwo,
     password,
   ]);
-
-  // const dashboardLink = createElement("a", {
-  //   href: "/#/dashboard",
-  //   textContent: "go to dashboard",
-  // });
 
   const loginButton = createElement("button", {
     id: "loginButton",
